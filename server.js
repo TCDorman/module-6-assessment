@@ -38,6 +38,7 @@ app.get('/api/robots', (req, res) => {
     } catch (error) {
         console.log('ERROR GETTING BOTS', error)
         res.sendStatus(400)
+        Rollbar.info("robots successfully created")
     }
 })
 
@@ -77,10 +78,12 @@ app.post('/api/duel', (req, res) => {
         } else {
             playerRecord.losses++
             res.status(200).send('You won!')
+            Rollbar.info('we have a winner')
         }
     } catch (error) {
         console.log('ERROR DUELING', error)
         res.sendStatus(400)
+        Rollbar.info('duel completed')
     }
 })
 
@@ -90,6 +93,7 @@ app.get('/api/player', (req, res) => {
     } catch (error) {
         console.log('ERROR GETTING PLAYER STATS', error)
         res.sendStatus(400)
+        Rollbar.warning('player created')
     }
 })
 
